@@ -75,3 +75,5 @@ To provision additional dashboards, see the Grafana [documentation](http://docs.
 ## Resources
 
 [Node.js and TypeScript Tutorial: Build a CRUD API](https://auth0.com/blog/node-js-and-typescript-tutorial-build-a-crud-api/)
+
+[Write data with the InfluxDB JavaScript client library](https://docs.influxdata.com/influxdb/v2.1/api-guide/client-libraries/nodejs/write/)
