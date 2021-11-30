@@ -3,9 +3,13 @@
  */
 
 import express, { Request, Response } from "express";
+import {
+  MyTrade,
+  save,
+  test,
+} from "../shared/infrastructure/influx.repository";
 import { BaseItem, Item } from "./item.interface";
 import * as ItemService from "./items.service";
-
 /**
  * Router Definition
  */
@@ -19,6 +23,7 @@ export const itemsRouter = express.Router();
 // GET items
 
 itemsRouter.get("/", async (req: Request, res: Response) => {
+  test();
   try {
     const items: Item[] = await ItemService.findAll();
 
@@ -88,6 +93,18 @@ itemsRouter.delete("/:id", async (req: Request, res: Response) => {
     await ItemService.remove(id);
 
     res.sendStatus(204);
+  } catch (e) {
+    res.status(500).send(e.message);
+  }
+});
+
+itemsRouter.post("/trade/", async (req: Request, res: Response) => {
+  try {
+    const trade: MyTrade = req.body;
+
+    save(trade);
+
+    res.status(201).json(trade);
   } catch (e) {
     res.status(500).send(e.message);
   }
